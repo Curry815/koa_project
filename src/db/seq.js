@@ -9,17 +9,19 @@ const {
 } = require('../config/config.default');
 
 const seq = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PWD, {
-  host: MYSQL_HOST,
-  dialect: 'mysql',
-})
+    host: MYSQL_HOST,
+    dialect: 'mysql',
+  }
+)
 
-seq
-  .authenticate()
-  .then(() => {
-    console.log('连接成功')
-  })
-  .catch(err => {
-    console.log('连接失败', err)
-  })
+// 测试连接
+// seq
+//   .authenticate()
+//   .then(() => {
+//     console.log('连接成功')
+//   })
+//   .catch(err => {
+//     console.log('连接失败', err)
+//   })
 
-modules.exports = seq;
+module.exports = seq;
