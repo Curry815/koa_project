@@ -9,7 +9,7 @@ class UserService {
     // await表达式: promise对象的值
     const res = await User.create({ user_name, password })
     
-    return res.dataValues
+    return res.dataValues;
   }
 
   async getUerInfo({ id, user_name, password, is_admin }) {
@@ -25,7 +25,7 @@ class UserService {
       where: whereOpt,
     })
 
-    return res ? res.dataValues : null
+    return res ? res.dataValues : null;
   }
 }
 

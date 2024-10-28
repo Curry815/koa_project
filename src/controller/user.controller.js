@@ -1,49 +1,30 @@
 /**
- * 业务层
+ * 业务层 操作数据库
  * @description 用户模块
  */
-const { createUser, getUerInfo } = require('../service/user.service')
+const { createUser } = require('../service/user.service')
+const { userRegisterError } = require('../constant/err.type')
 
 class UserController {
   async register(ctx, next) {
     // 1.获取数据
-    // console.log(ctx.request.body);
     const { user_name, password } = ctx.request.body;
-
-    // 合法
-    if (!user_name || !password) {
-      console.error('用户名或密码为空', ctx.request.body);
-      ctx.status = 400;
-      ctx.body = {        
-        code: '10001',
-        message: '用户名或密码为空',
-        result: '',
-      }
-      return;
-    }
-
-    // 合理性
-    if (await getUerInfo({ user_name })) {
-      ctx.status = 409;
+    try {
+      // 2.操作数据库
+      const res = await createUser(user_name, password);
+      // 3.返回结果
       ctx.body = {
-        code: '10002',
-        message: '用户名已存在',
-        result: '',
-      }
-      return;
+        code: 0,
+        message: '用户注册成功',
+        result: {
+          id: res.id,
+          user_name: res.user_name,
+        }
+      };
+    } catch (error) {
+      console.log(error);
+      ctx.app.emit('error', userRegisterError, ctx)
     }
-
-    // 2.操作数据库
-    const res = await createUser(user_name, password);
-    // 3.返回结果
-    ctx.body = {
-      code: 0,
-      message: '用户注册成功',
-      result: {
-        id: res.id,
-        user_name: res.user_name,
-      }
-    };
   }
 
   async login(ctx, next) {
