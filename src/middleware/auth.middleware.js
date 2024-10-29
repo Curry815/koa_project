@@ -10,7 +10,7 @@ const {
 
 // 认证
 const auth = async (ctx, next) => {
-  const { authorization } = ctx.request.headers;
+  const { authorization = "" } = ctx.request.headers;
   const token = authorization.replace("Bearer ", "");
 
   try {
