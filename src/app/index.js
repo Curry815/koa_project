@@ -3,6 +3,7 @@ const path = require("path");
 const Koa = require("koa");
 const { koaBody } = require("koa-body");
 const KoaStatic = require("koa-static");
+const parameter = require("koa-parameter");
 
 const errorHandle = require("./errHandle");
 
@@ -21,8 +22,9 @@ app.use(
     },
   })
 );
-app.use(KoaStatic(path.join(__dirname, "../upload")));
-app.use(router.routes()).use(router.allowedMethods());
+app.use(KoaStatic(path.join(__dirname, "../upload"))); // 静态资源
+app.use(parameter(app)); // 参数校验
+app.use(router.routes()).use(router.allowedMethods()); // 路由
 
 // 统一错误处理
 app.on("error", errorHandle);
