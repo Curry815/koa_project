@@ -34,6 +34,6 @@ const Goods = seq.define(
 );
 
 // 强制同步数据库(创建数据表)
-Goods.sync({ force: true });
+// Goods.sync({ force: true });
 
 module.exports = Goods;
