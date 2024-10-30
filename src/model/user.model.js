@@ -31,6 +31,6 @@ const User = seq.define(
 );
 
 // 强制同步数据库(创建数据表)
-User.sync({ force: true });
+// User.sync({ force: true });
 
 module.exports = User;
