@@ -9,6 +9,7 @@ const {
   update,
   remove,
   restore,
+  findAll,
 } = require("../controller/goods.controller");
 
 const router = new Router({ prefix: "/goods" });
@@ -30,5 +31,8 @@ router.post("/:id/off", auth, hasAdminPermission, remove);
 
 // 商品上架接口
 router.post("/:id/on", auth, hasAdminPermission, restore);
+
+// 获取商品列表接口
+router.get("/", findAll);
 
 module.exports = router;
