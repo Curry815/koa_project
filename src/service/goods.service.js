@@ -23,6 +23,15 @@ class GoodsService {
     });
     return res > 0 ? true : false;
   }
+
+  async restoreGoods(id) {
+    const res = await Goods.restore({
+      where: {
+        id,
+      },
+    });
+    return res > 0 ? true : false;
+  }
 }
 
 module.exports = new GoodsService();

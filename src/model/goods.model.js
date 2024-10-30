@@ -29,7 +29,7 @@ const Goods = seq.define(
     },
   },
   {
-    timestamps: false, // 不自动添加创建和修改时间的字段
+    paranoid: true, // 软删除
   }
 );
 
