@@ -70,6 +70,17 @@ class CartService {
       },
     });
   }
+
+  async selectAllCarts(user_id, is_All) {
+    return await Cart.update(
+      { selected: is_All ? true : false },
+      {
+        where: {
+          user_id,
+        },
+      }
+    );
+  }
 }
 
 module.exports = new CartService();

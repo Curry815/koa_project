@@ -11,6 +11,8 @@ const {
   findAll,
   update,
   remove,
+  selectAll,
+  // unSelectAll,
 } = require("../controller/carts.controller");
 
 // 2. 实例化router对象
@@ -44,6 +46,14 @@ router.patch(
 
 // 3.4 删除购物车接口
 router.delete("/", auth, validator({ ids: "array" }), remove);
+
+// 3.5 全选
+// router.post("/selectAll", auth, selectAll);
+// // 3.6 全不选
+// router.post("/unSelectAll", auth, unSelectAll);
+
+// 全选和全不选合并， 通过传递一个is_All参数判断
+router.post("/selectAll", auth, selectAll);
 
 // 4.导出router对象
 module.exports = router;
