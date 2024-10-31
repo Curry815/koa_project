@@ -3,6 +3,7 @@ const {
   findAllAddr,
   updateAddr,
   removeAddr,
+  setDefaultAddr,
 } = require("../service/addr.service");
 
 class AddrController {
@@ -59,6 +60,19 @@ class AddrController {
     ctx.body = {
       code: 0,
       message: "删除地址成功",
+      result: res,
+    };
+  }
+
+  async setDefault(ctx) {
+    const user_id = ctx.state.user.id;
+    const id = ctx.request.params.id;
+
+    const res = await setDefaultAddr(user_id, id);
+
+    ctx.body = {
+      code: 0,
+      message: "设置默认地址成功",
       result: res,
     };
   }

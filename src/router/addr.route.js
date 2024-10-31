@@ -8,6 +8,7 @@ const {
   findAll,
   update,
   remove,
+  setDefault,
 } = require("../controller/addr.controller");
 
 const router = new Router({
@@ -43,5 +44,8 @@ router.put(
 
 // 删除地址接口
 router.delete("/:id", auth, remove);
+
+// 设置默认接口
+router.patch("/:id", auth, setDefault);
 
 module.exports = router;

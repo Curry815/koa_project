@@ -23,6 +23,13 @@ class AddrService {
       where: { id },
     });
   }
+
+  async setDefaultAddr(user_id, id) {
+    // 先将当前用户的所有地址的is_default设置为false
+    await Address.update({ is_default: false }, { where: { user_id } });
+    // 再根据id将当前地址的is_default设置为true
+    await Address.update({ is_default: true }, { where: { id: id } });
+  }
 }
 
 module.exports = new AddrService();
