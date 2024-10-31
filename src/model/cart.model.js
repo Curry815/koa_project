@@ -1,6 +1,7 @@
 // 1.导入sequelize
 const { DataTypes } = require("sequelize");
 const seq = require("../db/seq");
+const Goods = require("./goods.model");
 
 // 2.定义模型
 const Cart = seq.define("zd_carts", {
@@ -30,6 +31,12 @@ const Cart = seq.define("zd_carts", {
 
 // 3.同步数据库
 // Cart.sync({ force: true });
+
+// 5.关联商品表
+Cart.belongsTo(Goods, {
+  foreignKey: "goods_id",
+  as: "goods_info",
+});
 
 // 4.导出模型
 module.exports = Cart;
