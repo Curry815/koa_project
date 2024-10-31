@@ -60,6 +60,16 @@ class CartService {
 
     return await res.save(); // 保存更新后的数据
   }
+
+  async removeCarts(ids) {
+    return await Cart.destroy({
+      where: {
+        id: {
+          [Op.in]: ids,
+        },
+      },
+    });
+  }
 }
 
 module.exports = new CartService();
