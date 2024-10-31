@@ -2,6 +2,7 @@ const {
   createAddr,
   findAllAddr,
   updateAddr,
+  removeAddr,
 } = require("../service/addr.service");
 
 class AddrController {
@@ -46,6 +47,18 @@ class AddrController {
     ctx.body = {
       code: 0,
       message: "更新地址成功",
+      result: res,
+    };
+  }
+
+  async remove(ctx) {
+    const id = ctx.request.params.id;
+
+    const res = await removeAddr(id);
+
+    ctx.body = {
+      code: 0,
+      message: "删除地址成功",
       result: res,
     };
   }

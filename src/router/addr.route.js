@@ -3,7 +3,12 @@ const Router = require("koa-router");
 const { auth } = require("../middleware/auth.middleware");
 const { validator } = require("../middleware/addr.middleware");
 
-const { create, findAll, update } = require("../controller/addr.controller");
+const {
+  create,
+  findAll,
+  update,
+  remove,
+} = require("../controller/addr.controller");
 
 const router = new Router({
   prefix: "/address",
@@ -35,5 +40,8 @@ router.put(
   }),
   update
 );
+
+// 删除地址接口
+router.delete("/:id", auth, remove);
 
 module.exports = router;

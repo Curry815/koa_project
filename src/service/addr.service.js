@@ -17,6 +17,12 @@ class AddrService {
       where: { id },
     });
   }
+
+  async removeAddr(id) {
+    return await Address.destroy({
+      where: { id },
+    });
+  }
 }
 
 module.exports = new AddrService();
