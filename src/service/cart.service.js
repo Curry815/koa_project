@@ -47,6 +47,19 @@ class CartService {
       list: rows,
     };
   }
+
+  async updateCarts(params) {
+    const { id, number, selected } = params;
+
+    const res = await Cart.findByPk(id);
+
+    if (!res) return "";
+
+    number !== undefined ? (res.number = number) : ""; // 如果number存在，则更新number, 否则不更新
+    selected !== undefined ? (res.selected = selected) : "";
+
+    return await res.save(); // 保存更新后的数据
+  }
 }
 
 module.exports = new CartService();
